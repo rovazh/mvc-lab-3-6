@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <%- include('partials/head.ejs')%>
+    <body>
+      <h1><%= book.title %> by <%= book.author %></h1>
+      <p>Year: <%= book.year %></p>
+      <% if (book.avaialable) { %>
+      <p>Status: Available</p>
+      <% } else %>
+      <p>Status: Borrowed</p>
+      <% } %>
+      <%- include('partials/back.ejs')%>
+      <form action="<% book.available ? '/books/borrow/' + book.id : '/books/return/' + book.id %>" method="POST">
+        <% if (!book.available) { %>
+        <button type="submit" disabled>Borrow Book</button>
+        <% } else { %>
+        <button type="submit" disabled>Borrow Book</button>
+        <% } %>
+        <% if (!book.available && didUserBorrowTheBook) { %>
+        <button type="submit" disabled>Return Book</button>
+        <% } else { %>
+        <button type="submit">Return Book</button>
+        <% } %>
+      </form>
+      <%- include('partials/back.ejs')%>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <%- include('partials/head.ejs')%>
+    <body>
+      <h1>Set User</h1>
+      <% if (users.length) { %>
+      <form action="/user/set" method="POST">
+        <div>
+          <label for="user">User</label>
+          <select id="user" name="userId">
+            <% users.forEach(function(user) { %>
+            <option value="<%= user.id %>"><%= user.login %></option>
+            <% }); %>
+          </select>
+        </div>
+        <button type="submit">Set use</button>
+      </form>
+      <% } else { %>
+      <p>Sorry, no users has been found</p>
+      <% } %>
+      <%- include('partials/back.ejs')%>
+    </body>
+</html>
